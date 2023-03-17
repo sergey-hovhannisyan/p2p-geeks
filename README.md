@@ -3,7 +3,7 @@ Mock Interview Scheduler for CS-4523.
 
 # _Testing Frontend_
 
-#_Required Packages_
+# _Required Packages_
 python -m venv venv_name
 pip install -r requirements.txt
 
