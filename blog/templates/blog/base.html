@@ -10,12 +10,13 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
+    <!-- blog/subFolder/file is the convention of importing files -->
     <link rel="stylesheet" type="text/css" href="{% static 'blog/css/main.css' %}">
 
     {% if title %}
-        <title>Django Blog - {{ title }}</title>
+        <title>Blog - {{ title }}</title>
     {% else %}
-        <title>Django Blog</title>
+        <title>Blog</title>
     {% endif %}
 </head>
 <body>
