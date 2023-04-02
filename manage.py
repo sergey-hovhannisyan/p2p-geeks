@@ -6,7 +6,7 @@ import sys
 
 def main():
     """Run administrative tasks."""
-    os.environ.setdefault("DJANGO_SETTINGS_MODULE", "P2P_Geeks.settings")
+    os.environ.setdefault("DJANGO_SETTINGS_MODULE", "p2p_geeks.settings")
     try:
         from django.core.management import execute_from_command_line
     except ImportError as exc:

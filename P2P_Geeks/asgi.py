@@ -1,5 +1,5 @@
 """
-ASGI config for P2P_Geeks project.
+ASGI config for p2p_geeks project.
 
 It exposes the ASGI callable as a module-level variable named ``application``.
 
@@ -11,6 +11,6 @@ import os
 
 from django.core.asgi import get_asgi_application
 
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "P2P_Geeks.settings")
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "p2p_geeks.settings")
 
 application = get_asgi_application()
