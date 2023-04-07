@@ -29,3 +29,11 @@ version of P2P-Geeks (on localhost:8000)
 `python manage.py runserver`
  
 ## _Understanding the Directory Structure_
+
+The name of this project is P2P-Geeks as well as the top level directory. 
+Using standard Django structuring conventions, our main application is
+named after this directory as p2p_geeks.
+
+All templates (HTML) are within the templates folder with their adjacent
+assets (i.e CSS, JS, images) stored in the static folder. All sub 
+applications for backend development can be found within the apps folder.
