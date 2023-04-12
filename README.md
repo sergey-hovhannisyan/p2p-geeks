@@ -1,39 +1,33 @@
 # P2P Geeks
 Mock Interview Scheduler
+
 Final Project for Senior Design CS-4523 
 
-## _Testing Frontend_
-
-## _Install and run the project locally_
+## Install and run the project locally
 
 In order to try running this application locally on your computer, start
 by forking and cloning the main branch of this repository within the desired
 project directory on your local machine. 
 
-Then, create and start a virtual environment:
+Then, create and start a virtual environment: <br />
+`virtualenv env` <br />
+`source env/bin/activate` <br />
 
-`virtualenv env`
-`source env/bin/activate`
+Install the project dependencies: <br />
+`pip install -r requirements.txt` <br />
 
-Install the project dependencies:
-`pip install -r requirements.txt`
-
-Then run
-
-`python manage.py makemigrations`
-`python manage.py migrate`
+Then run <br />
+`python manage.py makemigrations` <br />
+`python manage.py migrate` <br />
 
 And now you should be able to start the development server and play with a local
-version of P2P-Geeks (on localhost:8000)
-
+version of P2P-Geeks (on localhost:8000) <br />
 `python manage.py runserver`
  
-## _Understanding the Directory Structure_
+## Directory Structure
 
-The name of this project is P2P-Geeks as well as the top level directory. 
-Using standard Django structuring conventions, our main application is
-named after this directory as p2p_geeks.
-
-All templates (HTML) are within the templates folder with their adjacent
-assets (i.e CSS, JS, images) stored in the static folder. All sub 
-applications for backend development can be found within the apps folder.
+We are following recommended guidelines for a standard Django app. Our project directory is structured as follows:
+- p2p_geeks/ (main Django app)
+- apps/ (contains all Django modules for various backend features)
+- templates/ (HTML)
+- static/ (all static assets i.e css/js/images)
