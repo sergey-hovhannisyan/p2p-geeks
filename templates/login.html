@@ -6,7 +6,10 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 </head>
 <body>
-    {% if messages %}
+    <main role="main" class="container">
+        <div class="row">
+          <div class="col-md-8">
+            {% if messages %}
     {% for message in messages %}
         <div class="alert alert-{{ message.tags}}">
             {{ message }}
@@ -31,6 +34,9 @@
             </small>
         </div>
     </div>
+          </div>
+        </div>
+      </main>
     <!-- Include necessary JS files for functionality -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>

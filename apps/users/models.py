@@ -6,20 +6,17 @@ from django.utils import timezone
     
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    first_name = models.CharField(max_length=30)
-    last_name = models.CharField(max_length=30)
     school_name = models.CharField(max_length=100, blank=True)
     gpa = models.DecimalField(max_digits=3, decimal_places=2, null=True, blank=True)
     student_status = models.CharField(max_length=10, blank=True)
-    phone_number = models.CharField(max_length=20, blank=True)
     date_of_birth = models.DateField(null=True, blank=True)
     calendly_link = models.URLField(blank=True)
 
     
     def __str__(self):
-        return self.username
+        return f'{self.user.username} Profile'
 
-class Skill_Set(models.Model):
+class Skill(models.Model):
     id = models.AutoField(primary_key=True)
     skill = models.CharField(max_length=20, blank=False)
     skill_level = models.IntegerField(validators=[MinValueValidator(0), MaxValueValidator(10)], blank=False)

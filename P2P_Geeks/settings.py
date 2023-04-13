@@ -132,3 +132,5 @@ CRISPY_TEMPLATE_PACK = "bootstrap5"
 
 LOGIN_REDIRECT_URL = "signed_in_home"
 
+LOGIN_URL = 'login'
+
