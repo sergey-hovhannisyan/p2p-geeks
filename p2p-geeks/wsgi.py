@@ -1,5 +1,5 @@
 """
-WSGI config for p2p_geeks project.
+WSGI config for p2p-geeks project.
 
 It exposes the WSGI callable as a module-level variable named ``application``.
 
@@ -11,6 +11,6 @@ import os
 
 from django.core.wsgi import get_wsgi_application
 
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "p2p_geeks.settings")
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "p2p-geeks.settings")
 
 application = get_wsgi_application()
