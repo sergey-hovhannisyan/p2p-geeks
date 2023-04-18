@@ -2,7 +2,8 @@ from django.shortcuts import render, redirect
 from .forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm, SkillUpdateForm
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from .models import Skill
+from .models import Skill, Profile
+#from .matching import match_users
 
 
 def register(request):
@@ -16,36 +17,6 @@ def register(request):
     else:
         form = UserRegisterForm()
     return render(request, "register.html", {"form" : form})
-
-# @login_required
-# def profile(request):
-#     skill_set = Skill.objects.filter(user=request.user)
-#     if request.method == 'POST':
-#         u_form = UserUpdateForm(request.POST, instance=request.user)
-#         p_form = ProfileUpdateForm(request.POST, request.FILES, instance=request.user.profile)
-#         s_form = SkillUpdateForm(request.POST, user=request.user)
-#         if u_form.is_valid() and p_form.is_valid():
-#             u_form.save()
-#             p_form.save()
-#             messages.success(request, f'Your profile has been updated!')
-#             return redirect("profile") 
-#         if s_form.is_valid():
-#             s_form.save()
-
-#     else:
-#         u_form = UserUpdateForm(instance=request.user)
-#         p_form = ProfileUpdateForm(instance=request.user.profile)
-#         s_form = SkillUpdateForm(user=request.user)
-
-#     context = {
-#         'u_form': u_form,
-#         'p_form': p_form,
-#         's_form': s_form,
-#         'skill_set' : skill_set
-#     }
-#     return render(request, 'profile.html', context)
-
-
 
 
 @login_required
@@ -78,3 +49,15 @@ def profile(request):
         'skill_set' : skill_set
     }
     return render(request, 'profile.html', context)
+
+@login_required
+def connect(request):
+    profiles = Profile.objects.exclude(user=request.user)
+    context = {
+        'profiles' : profiles
+    }
+    return render(request, 'connect.html', context)
+
+@login_required
+def follow_user(request):
+    return
