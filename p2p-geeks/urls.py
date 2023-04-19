@@ -20,6 +20,7 @@ from django.urls import path
 from django.views.generic import TemplateView
 from django.views.decorators.cache import cache_page
 from apps.users import views as user_views
+from apps.posts import urls as post_urls
 
 
 urlpatterns = [
@@ -31,5 +32,5 @@ urlpatterns = [
     path("logout/", auth_views.LogoutView.as_view(template_name="index.html"), name="logout"),
     path("signedin/", cache_page(60 * 15)(TemplateView.as_view(template_name="signed_in_home.html")), name="signed_in_home"),
     path("", cache_page(60 * 15)(TemplateView.as_view(template_name="index.html")), name="index"),
-]
+] + + post_urls.urlpatterns
 
