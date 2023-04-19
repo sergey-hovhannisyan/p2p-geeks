@@ -3,13 +3,20 @@ from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
 from django.utils import timezone
 
-   
+STUDENT_STATUS_CHOICES = (
+    ("Freshman", "Freshman"), 
+    ("Sophomore", "Sophomore"), 
+    ("Junior", "Junior"),
+    ("Senior", "Senior"),
+    ("Graduate", "Graduate"),
+)
+
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     bio = models.CharField(max_length=50, blank=True)
     school_name = models.CharField(max_length=100, blank=True)
     gpa = models.DecimalField(max_digits=3, decimal_places=2, validators=[MinValueValidator(0), MaxValueValidator(4)], null=True, blank=True)
-    student_status = models.CharField(max_length=10, blank=True)
+    student_status = models.CharField(max_length=10, choices=STUDENT_STATUS_CHOICES, blank=True)
     date_of_birth = models.DateField(null=True, blank=True)
     calendly_link = models.URLField(blank=True)
 

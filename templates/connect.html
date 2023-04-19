@@ -21,6 +21,9 @@
             margin-bottom: 5px;
         }
 
+        .container {
+            max-width: 2000px;
+        }
         .profile-card .badge {
             margin-left: 5px;
         }
@@ -45,10 +48,9 @@
             <!-- List the profiles here -->
             <div class="profile-card">
                 <ul class="list-group">
-                {% for profile in profiles %}
+                   {% for profile, skills in results %}
                     <li class="list-group-item d-flex justify-content-between align-items-center">
                         <div>
-                        
                             <h5 class="mb-0">{{ profile.user.first_name }} {{ profile.user.last_name }}</h5> <!-- First name and last name -->
                             <span class="text-secondary">{{ profile.school_name }}</span> <!-- School name -->
                             <span class="badge badge-primary badge-pill">{{ profile.student_status }}</span> <!-- Student status -->
@@ -58,9 +60,17 @@
                             </div>
                             <p class="text-secondary">{{ profile.bio }}</p>
                         </div>
+                        <div>
+                            {% for skill in skills|slice:":7" %}
+                            <button type="button" class="btn btn-secondary btn-sm" style="margin-bottom: 1px;" disabled="true">
+                                <span class="small">{{skill}}</span> </button>
+                            {% endfor %}
+                        </div>
+
+                    
                         <form method="POST" action="{% url 'profile' %}">
                             {% csrf_token %}
-                            <button type="submit" class="btn btn-primary">Follow</button>
+                            <button type="submit" class="btn btn-primary">Schedule</button>
                         </form>
                     </li>
                 {% endfor %}

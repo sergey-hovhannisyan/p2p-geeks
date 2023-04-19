@@ -3,10 +3,20 @@ from .forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm, SkillUpd
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from .models import Skill, Profile
+from django.contrib.auth.views import LoginView
 #from .matching import match_users
 
 
+def login(request):
+    if request.user.is_authenticated:
+        return redirect('profile')
+    else:
+        view = LoginView.as_view(template_name="login.html")
+        return view(request)
+
 def register(request):
+    if request.user.is_authenticated:
+        return redirect('profile')
     if request.method == "POST":
         form = UserRegisterForm(request.POST)
         if form.is_valid():
@@ -53,8 +63,14 @@ def profile(request):
 @login_required
 def connect(request):
     profiles = Profile.objects.exclude(user=request.user)
+    skills_lists = []
+    for profile in profiles:
+        skills = Skill.objects.filter(user=profile.user)
+        skills_lists.append(list(skills))
+
+    results = zip(profiles, skills_lists)
     context = {
-        'profiles' : profiles
+        "results" : results,
     }
     return render(request, 'connect.html', context)
 
