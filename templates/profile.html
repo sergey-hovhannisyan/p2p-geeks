@@ -26,28 +26,9 @@
                     {{ p_form|crispy }}
                 </fieldset>
                 <div class="form-group">
-                    <button class="btn btn-outline-info" type="submit" name="profile_update">Update</button>
-                </div>
-            </form> 
-            <br> <br>
-            <form method="POST">
-                {% csrf_token %}
-                <fieldset class="form-group">
-                    <legend class="border-bottom mb-4">Add New Skill!</legend>
-                    {{ s_form|crispy }}
-                </fieldset>
-                <div class="form-group">
-                    <button class="btn btn-outline-info" type="submit" name="skill_update">Add</button>
+                    <button class="btn btn-outline-info" type="submit">Update</button>
                 </div>
             </form>
-                <br> <br>
-                <h4>My Skills:</h4>
-                <div>
-                    {% for skill in skill_set %}
-                        <button type="button" class="btn btn-lg btn-primary" style="margin-bottom: 5px;" disabled="true">{{skill}}</button>
-                    {% endfor %}
-                </div>
-
           </div>
         </div>
       </main>

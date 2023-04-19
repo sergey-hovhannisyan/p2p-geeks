@@ -19,7 +19,7 @@ Install the project dependencies: <br />
 
 Then run <br />
 `python manage.py makemigrations` <br />
-`python manage.py migrate` <br />
+`python manage.py migrate --run-syncdb` <br />
 
 And now you should be able to start the development server and play with a local
 version of P2P-Geeks (on localhost:8000) <br />

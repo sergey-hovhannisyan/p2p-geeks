@@ -31,9 +31,15 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    # Custom
     "apps.users",
+    "apps.posts",
     "crispy_forms",
     "crispy_bootstrap5",
+    "taggit",
+    "tinymce",
+
+    # Default
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -58,7 +64,10 @@ ROOT_URLCONF = "p2p-geeks.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [os.path.join(BASE_DIR, "templates")],
+        "DIRS": [
+            os.path.join(BASE_DIR, "templates"),
+            os.path.join(BASE_DIR, "templates/posts")       
+        ],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [

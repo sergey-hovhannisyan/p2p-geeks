@@ -67,7 +67,7 @@
                             <li class="d_none"><a href="Javascript:void(0)"><i class="fa fa-user" aria-hidden="true"></i></a></li>
                             <li class="d_none"> <a href="Javascript:void(0)"><i class="fa fa-search" style="cursor: pointer;" aria-hidden="true"></i></a> </li>
                             <li>
-                                <button class="openbtn" onclick="openNav()"><img src="images/menu_btn.png"></button>
+                                <button class="openbtn" onclick="openNav()"><img src="{% static 'images/menu_btn.png' %}"></button>
                             </li>
                         </ul>
                     </div>
@@ -106,10 +106,10 @@
                                                     <div class="row">
                                                         <div class="col-md-6">
                                                         <div class="sign_up">
-                                                            <input class="info_button" placeholder="First Name">
+                                                            <!-- <input class="info_button" placeholder="First Name">
                                                             <input class="info_button" placeholder="Last Name">
                                                             <input class="info_button" placeholder="Email">
-                                                            <input class="info_button" placeholder="Password" type="password">
+                                                            <input class="info_button" placeholder="Password" type="password"> -->
                                                             <a class="read_more" href="Javascript:void(0)">Sign Up</a>
                                                             <!-- Delete the fields and have the following line only to refer to register page 
                                                             <a class="read_more" href=" {% url 'register' %}">Sign Up</a> -->
@@ -117,8 +117,8 @@
                                                     </div>
                                                     <div class="col-md-6">
                                                         <div class="sign_up">
-                                                            <input class="info_button" placeholder="Email">
-                                                            <input class="info_button" placeholder="Password" type="password">
+                                                            <!-- <input class="info_button" placeholder="Email">
+                                                            <input class="info_button" placeholder="Password" type="password"> -->
                                                             <a class="read_more" href="Javascript:void(0)">Login</a>
                                                         </div>
                                                     </div>
@@ -142,31 +142,31 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-3 col-sm-6">
-                    <div id="wa_hover" class="wallet_box text_align_center">
-                        <i><img src="images/wa1.svg" alt="#"/></i>
+                    <div id="wa_hover" class="wallet_box text_align_center" style="height: 200px">
+                        <!-- <i><img src="images/wa1.svg" alt="#"/></i> -->
                         <h3>Mock Interviews</h3>
-                        <p>Be on both sides of the interview process by participating and leading mock technical interviews</p>
+                        <p>Be on both sides of the interview process by participating and leading mock interviews</p>
                     </div>
                 </div>
                 <div class="col-lg-3 col-sm-6">
-                    <div id="wa_hover" class="wallet_box text_align_center">
-                        <i><img src="images/wa2.svg" alt="#"/></i>
+                    <div id="wa_hover" class="wallet_box text_align_center" style="height: 200px">
+                        <!-- <i><img src="images/wa2.svg" alt="#"/></i> -->
                         <h3>Learn</h3>
                         <p>Learn the fundamental structures and technical knowledge necessary to pass interviews</p>
                     </div>
                 </div>
                 <div class="col-lg-3 col-sm-6">
-                    <div id="wa_hover" class="wallet_box text_align_center">
-                        <i><img src="images/wa3.svg" alt="#"/></i>
+                    <div id="wa_hover" class="wallet_box text_align_center" style="height: 200px">
+                        <!-- <i><img src="images/wa3.svg" alt="#"/></i> -->
                         <h3>Practice</h3>
                         <p>Practice technical questions alone prior to facing an interview from a myriad of problems</p>
                     </div>
                 </div>
-                <div class="col-lg-3 col-sm-6">
-                    <div id="wa_hover" class="wallet_box text_align_center">
-                        <i><img src="images/wa4.svg" alt="#"/></i>
+                <div class="col-lg-3 col-sm-6" href="{% url 'forums' %}">
+                    <div id="wa_hover" class="wallet_box text_align_center" style="height: 200px">
+                        <!-- <i><img src="images/wa4.svg" alt="#"/></i> -->
                         <h3>Discussion Board</h3>
-                        <p>Have a burning question you want answered? Speak with others about tips and tricks you've learned along the way</p>
+                        <p>Spark a converstion and speak with others about tips and tricks you've learned along the way</p>
                     </div>
                 </div>
             </div>
@@ -185,7 +185,7 @@
                                     <h2>About Us</h2>
                                 </div>
                                 <div class="about_text">
-                                    <p>P2P Geeks was designed and developed by a group of undergraduate computer science students looking for a better way to prepare for interviews. The team has analyzed various studies and experiences to truly understand the pain points and the reasons this process has been so daunting and difficult. Performance anxiety was identified as one of the primary causes for failing a technical interview, and so the team decided that the best way to attack that issue was to offer a solution that enables applicatns to perform in real-time for free.</p>
+                                    <p>P2P Geeks was designed and developed by a group of undergraduate computer science students looking for a better way to prepare for interviews. The team has analyzed various studies and experiences to truly understand the reasons this process has been so daunting and difficult. Performance anxiety was identified as one of the primary causes for failing a technical interview, and so the team decided that the best way to attack that issue was to offer a solution that enables applicatns to perform in real-time for free.</p>
                                 </div>
                             </div>
                             <div class="col-md-6">
