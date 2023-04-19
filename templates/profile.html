@@ -1,10 +1,18 @@
 {% load crispy_forms_tags %}
+{% load static %}
 <!DOCTYPE html>
 <html>
 <head>
     <title>Profile</title>
     <!-- Include necessary CSS files for styling -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <!-- style css -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <!-- responsive-->
+    <link rel="stylesheet" href="{% static 'css/responsive.css' %}">
+    <!-- awesome fontfamily -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    
 </head>
 <body>
     <main role="main" class="container">
@@ -20,12 +28,12 @@
             <form method="POST">
                 <!-- Include CSRF token here -->
                 {% csrf_token %}
-                <fieldset class="form-group">
+                <fieldset class="form-group" style="margin-top: 2em;">
                     <legend class="border-bottom mb-4">Profile Info</legend>
                     {{ u_form|crispy }}
                     {{ p_form|crispy }}
                 </fieldset>
-                <div class="form-group">
+                <div class="form-group" style="margin-bottom: 8em;">
                     <button class="btn btn-outline-info" type="submit">Update</button>
                 </div>
             </form>
