@@ -32,5 +32,5 @@ urlpatterns = [
     path("logout/", auth_views.LogoutView.as_view(template_name="index.html"), name="logout"),
     path("signedin/", cache_page(60 * 15)(TemplateView.as_view(template_name="signed_in_home.html")), name="signed_in_home"),
     path("", cache_page(60 * 15)(TemplateView.as_view(template_name="index.html")), name="index"),
-] + + post_urls.urlpatterns
+] + post_urls.urlpatterns
 

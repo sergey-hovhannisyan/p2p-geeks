@@ -54,7 +54,8 @@ def detail(request, slug):
 
 def posts(request, slug):
     category = get_object_or_404(Category, slug=slug)
-    posts = Post.objects.filter(approved=True, categories=category)
+    # posts = Post.objects.filter(approved=True, categories=category)
+    posts = Post.objects.filter(categories=category)
     paginator = Paginator(posts, 5)
     page = request.GET.get("page")
     try:
@@ -93,10 +94,10 @@ def create_post(request):
     return render(request, "create_post.html", context)
 
 def latest_posts(request):
-    posts = Post.objects.all().filter(approved=True)[:10]
+    posts = Post.objects.all()
     context = {
         "posts":posts,
-        "title": "Latest 10 Posts"
+        "title": "Latest Posts"
     }
 
     return render(request, "latest-posts.html", context)

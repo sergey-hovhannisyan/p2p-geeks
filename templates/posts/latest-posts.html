@@ -3,7 +3,9 @@
     <div class="container">
         <!--Navigation-->
         <div class="navigate">
-            <span>Latest 10 Posts</span>
+            <span><a href="{% url 'forums' %}">Back to Forums</a></span>
+            <br />
+            <span>Latest Posts</span>
         </div>
         <!--Display posts table-->
         <div class="posts-table">
@@ -26,7 +28,11 @@
 
                 <div class="last-reply">
                     {{post.last_reply.date|date}}
-                    <br>By <b><a href="">{{post.last_reply.user|title}}</a></b>
+                    {% if post.last_reply.user %}
+                    <br><b><a href="">{{post.last_reply.user|title}}</a></b>
+                    {% else %}
+                    <br>None<b></b>
+                    {% endif %}
                 </div>
             </div>
             {% endfor %}
