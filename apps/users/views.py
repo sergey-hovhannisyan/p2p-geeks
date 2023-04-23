@@ -1,8 +1,8 @@
 from django.shortcuts import render, redirect
-from .forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm, SkillUpdateForm
+from .forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm, SkillUpdateForm, InterestUpdateForm
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from .models import Skill, Profile
+from .models import Skill, Profile, Interest
 from django.contrib.auth.views import LoginView
 #from .matching import match_users
 
@@ -32,9 +32,11 @@ def register(request):
 @login_required
 def profile(request):
     skill_set = Skill.objects.filter(user=request.user)
+    interest_set = Interest.objects.filter(user=request.user)
     u_form = UserUpdateForm(instance=request.user)
     p_form = ProfileUpdateForm(instance=request.user.profile)
     s_form = SkillUpdateForm(user=request.user)
+    i_form = InterestUpdateForm(user=request.user)
     if request.method == 'POST':
         if 'profile_update' in request.POST:  # Check if profile update form submitted
             u_form = UserUpdateForm(request.POST, instance=request.user)
@@ -51,12 +53,21 @@ def profile(request):
             else:
                 messages.warning(request, f'Skill already exists!')
                 return redirect("profile")
+        elif 'interest_update' in request.POST:  # Check if interest update form submitted
+            i_form = InterestUpdateForm(request.POST, user=request.user)
+            if i_form.is_valid():
+                i_form.save()
+            else:
+                messages.warning(request, f'Interest already exists!')
+                return redirect("profile")
 
     context = {
         'u_form': u_form,
         'p_form': p_form,
         's_form': s_form,
-        'skill_set' : skill_set
+        'i_form': i_form,
+        'skill_set' : skill_set,
+        'interest_set' : interest_set,
     }
     return render(request, 'profile.html', context)
 

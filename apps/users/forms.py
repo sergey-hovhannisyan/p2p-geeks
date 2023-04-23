@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
-from .models import Profile, Skill
+from .models import Profile, Skill, Interest
 from django.core.exceptions import ValidationError
 
 
@@ -40,6 +40,29 @@ class SkillUpdateForm(forms.ModelForm):
     
     def save(self, commit=True):
         instance = super(SkillUpdateForm, self).save(commit=False)
+        instance.user = self.user
+        if commit:
+            instance.save()
+        return instance
+
+    
+class InterestUpdateForm(forms.ModelForm):
+    class Meta:
+        model = Interest
+        fields = ['interest']
+    
+    def __init__(self, *args, **kwargs):
+        self.user = kwargs.pop('user')
+        super(InterestUpdateForm, self).__init__(*args, **kwargs)
+    
+    def clean_interest(self):
+        interest = self.cleaned_data.get('interest')
+        if Interest.objects.filter(user=self.user, interest=interest).exists() or not interest:
+            raise forms.ValidationError("This interest already exists.")
+        return interest
+    
+    def save(self, commit=True):
+        instance = super(InterestUpdateForm, self).save(commit=False)
         instance.user = self.user
         if commit:
             instance.save()

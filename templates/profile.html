@@ -29,6 +29,7 @@
                     <button class="btn btn-outline-info" type="submit" name="profile_update">Update</button>
                 </div>
             </form> 
+            <!-- Skill update and list -->
             <br> <br>
             <form method="POST">
                 {% csrf_token %}
@@ -47,7 +48,25 @@
                         <button type="button" class="btn btn-lg btn-primary" style="margin-bottom: 5px;" disabled="true">{{skill}}</button>
                     {% endfor %}
                 </div>
-
+            <!-- Interest update and list -->
+            <br> <br>
+            <form method="POST">
+                {% csrf_token %}
+                <fieldset class="form-group">
+                    <legend class="border-bottom mb-4">Add New Interest!</legend>
+                    {{ i_form|crispy }}
+                </fieldset>
+                <div class="form-group">
+                    <button class="btn btn-outline-info" type="submit" name="interest_update">Add</button>
+                </div>
+            </form>
+                <br> <br>
+                <h4>My Interests:</h4>
+                <div>
+                    {% for interest in interest_set %}
+                        <button type="button" class="btn btn-lg btn-primary" style="margin-bottom: 5px;" disabled="true">{{interest}}</button>
+                    {% endfor %}
+                </div>
           </div>
         </div>
       </main>

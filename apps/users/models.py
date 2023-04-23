@@ -91,6 +91,97 @@ class Skill(models.Model):
     class Meta:
         unique_together = ("skill", "user")
 
+INTEREST_CHOICES = (
+    ("Array", "Array"),
+    ("String", "String"),
+    ("Linked List", "Linked List"),
+    ("Tree", "Tree"),
+    ("Graphs", "Graphs"),
+    ("Dynamic Programming", "Dynamic Programming"),
+    ("Backtracking", "Backtracking"),
+    ("Stack", "Stack"),
+    ("Queue", "Queue"),
+    ("Heap", "Heap"),
+    ("Hash Table", "Hash Table"),
+    ("Sorting and Searching", "Sorting and Searching"),
+    ("Bit Manipulation", "Bit Manipulation"),
+    ("Greedy", "Greedy"),
+    ("Math", "Math"),
+    ("Geometry", "Geometry"),
+    ("Randomization", "Randomization"),
+    ("Simulation", "Simulation"),
+    ("Design", "Design"),
+    ("Object-Oriented Design", "Object-Oriented Design"),
+    ("Concurrency", "Concurrency"),
+    ("Operating System", "Operating System"),
+    ("Database", "Database"),
+    ("System Design", "System Design"),
+    ("Network", "Network"),
+    ("Web Development", "Web Development"),
+    ("Machine Learning", "Machine Learning"),
+    ("Artificial Intelligence", "Artificial Intelligence"),
+    ("Computer Vision", "Computer Vision"),
+    ("Natural Language Processing", "Natural Language Processing"),
+    ("Data Science", "Data Science"),
+    ("Big Data", "Big Data"),
+    ("Cloud Computing", "Cloud Computing"),
+    ("Blockchain", "Blockchain"),
+    ("Cybersecurity", "Cybersecurity"),
+    ("Digital Signal Processing", "Digital Signal Processing"),
+    ("Image Processing", "Image Processing"),
+    ("Signal Processing", "Signal Processing"),
+    ("Audio Processing", "Audio Processing"),
+    ("Video Processing", "Video Processing"),
+    ("Game Development", "Game Development"),
+    ("Virtual Reality", "Virtual Reality"),
+    ("Augmented Reality", "Augmented Reality"),
+    ("Mobile Development", "Mobile Development"),
+    ("Desktop Development", "Desktop Development"),
+    ("Embedded Systems", "Embedded Systems"),
+    ("Robotics", "Robotics"),
+    ("IoT", "IoT"),
+    ("Microservices", "Microservices"),
+    ("Serverless Computing", "Serverless Computing"),
+    ("CI/CD", "CI/CD"),
+    ("DevOps", "DevOps"),
+    ("Testing", "Testing"),
+    ("Debugging", "Debugging"),
+    ("Code Review", "Code Review"),
+    ("Code Quality", "Code Quality"),
+    ("Code Optimization", "Code Optimization"),
+    ("Scalability", "Scalability"),
+    ("Performance", "Performance"),
+    ("Security", "Security"),
+    ("Privacy", "Privacy"),
+    ("Accessibility", "Accessibility"),
+    ("Internationalization", "Internationalization"),
+    ("Localization", "Localization"),
+    ("Technical Writing", "Technical Writing"),
+    ("Documentation", "Documentation"),
+    ("Project Management", "Project Management"),
+    ("Agile Methodology", "Agile Methodology"),
+    ("Leadership", "Leadership"),
+    ("Teamwork", "Teamwork"),
+    ("Communication", "Communication"),
+    ("Presentation Skills", "Presentation Skills"),
+    ("Interview Preparation", "Interview Preparation"),
+    ("Career Development", "Career Development"),
+    ("Entrepreneurship", "Entrepreneurship"),
+    ("Finance", "Finance"),
+    ("Marketing", "Marketing"),
+    ("Product Management", "Product Management"),
+    ("Sales", "Sales")
+)
+
+class Interest(models.Model):
+    interest = models.CharField(max_length=40, choices=INTEREST_CHOICES, blank=False)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.interest
+
+    class Meta:
+        unique_together = ("interest", "user")
     
 class Follow(models.Model):
     id = models.AutoField(primary_key=True)
