@@ -20,10 +20,10 @@ from django.views.generic import TemplateView
 from apps.posts import urls as post_urls
 from apps.users import urls as users_urls
 
-
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("", TemplateView.as_view(template_name="index.html"), name="index"),
     path("", TemplateView.as_view(template_name="index.html"), name="signed_in_home"),
 ] + post_urls.urlpatterns + users_urls.urlpatterns
 
+handler404 = "apps.users.views.handler404"

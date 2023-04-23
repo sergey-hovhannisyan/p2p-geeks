@@ -88,21 +88,5 @@ def connect(request):
     }
     return render(request, 'connect.html', context)
 
-
-# @login_required
-# def connect(request):
-#     profiles = Profile.objects.exclude(user=request.user)
-#     skills_lists = []
-#     interest_lists = []
-#     for profile in profiles:
-#         skills = Skill.objects.filter(user=profile.user)
-#         interests = Interest.objects.filter(user=profile.user)
-#         skills_lists.append(list(skills))
-#         interest_lists.append(list(interests))
-
-#     results = zip(profiles, skills_lists, interest_lists)
-#     context = {
-#         "results" : results,
-#     }
-#     return render(request, 'connect.html', context)
-
+def handler404(request, exception):
+    return render(request, '404.html', status=404)

@@ -11,10 +11,63 @@ STUDENT_STATUS_CHOICES = (
     ("Graduate", "Graduate"),
 )
 
+SCHOOL_CHOICES = (
+("Amherst", "Amherst College"),
+("Babson", "Babson College"),
+("Barnard", "Barnard College"),
+("BC", "Boston College"),
+("BU", "Boston University"),
+("Bowdoin", "Bowdoin College"),
+("Brandeis", "Brandeis University"),
+("Brown", "Brown University"),
+("Caltech", "California Institute of Technology"),
+("CMU", "Carnegie Mellon University"),
+("CMC", "Claremont McKenna College"),
+("Columbia", "Columbia University"),
+("Cornell", "Cornell University"),
+("Dartmouth", "Dartmouth College"),
+("Duke", "Duke University"),
+("Emory", "Emory University"),
+("Georgetown", "Georgetown University"),
+("Georgia Tech", "Georgia Institute of Technology"),
+("Harvard", "Harvard University"),
+("HMC", "Harvey Mudd College"),
+("JHU", "Johns Hopkins University"),
+("MIT", "Massachusetts Institute of Technology"),
+("Middlebury", "Middlebury College"),
+("NYU", "New York University"),
+("Tandon", "New York University Tandon School of Engineering"),
+("Northwestern", "Northwestern University"),
+("Pomona", "Pomona College"),
+("Princeton", "Princeton University"),
+("Rice", "Rice University"),
+("Stanford", "Stanford University"),
+("Swarthmore", "Swarthmore College"),
+("Tufts", "Tufts University"),
+("UC Berkeley", "University of California, Berkeley"),
+("UCLA", "University of California, Los Angeles"),
+("UCSD", "University of California, San Diego"),
+("UCSB", "University of California, Santa Barbara"),
+("UChicago", "University of Chicago"),
+("Michigan", "University of Michigan, Ann Arbor"),
+("UNC", "University of North Carolina at Chapel Hill"),
+("Notre Dame", "University of Notre Dame"),
+("UPenn", "University of Pennsylvania"),
+("USC", "University of Southern California"),
+("UT Austin", "University of Texas at Austin"),
+("UVA", "University of Virginia"),
+("UW", "University of Washington"),
+("Vanderbilt", "Vanderbilt University"),
+("WashU", "Washington University in St. Louis"),
+("Wellesley", "Wellesley College"),
+("Williams", "Williams College"),
+("Yale", "Yale University"),
+)
+
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     bio = models.CharField(max_length=50, blank=True)
-    school_name = models.CharField(max_length=100, blank=True)
+    school_name = models.CharField(max_length=100, choices=SCHOOL_CHOICES, blank=True)
     gpa = models.DecimalField(max_digits=3, decimal_places=2, validators=[MinValueValidator(0), MaxValueValidator(4)], null=True, blank=True)
     student_status = models.CharField(max_length=10, choices=STUDENT_STATUS_CHOICES, blank=True)
     date_of_birth = models.DateField(null=True, blank=True)
