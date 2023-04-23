@@ -64,11 +64,17 @@
 
                     <div class="col-sm-4">
                         <ul class="email text_align_right">
-                            <li class="d_none"><a href="{% url 'profile' %}"><i class="fa fa-user" aria-hidden="true"></i></a></li>
+                            
                             <!-- <li class="d_none"> <a href="Javascript:void(0)"><i class="fa fa-search" style="cursor: pointer;" aria-hidden="true"></i></a> </li> -->
-                            <li>
+                        {% if request.user.is_authenticated %}
+                            <li class="d_none"><a href="{% url 'profile' %}"><i class="fa fa-user" aria-hidden="true"></i></a></li>
+                            <li class="nav-item"><a href="{% url 'connect' %}" style="color: white;">Connect</a></li>
+
+                            <li><a href="{% url 'logout' %}" style="color: white;">Logout</a></li>
+                        {% endif %}
+                            <!-- <li>
                                 <button class="openbtn" onclick="openNav()"><img src="{% static 'images/menu_btn.png' %}"></button>
-                            </li>
+                            </li> -->
                         </ul>
                     </div>
                 </div>
@@ -115,16 +121,7 @@
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                    {% else %}
-                                                        <div class="row">
-                                                            <div class="col-md-6">
-                                                            <div class="log_out">
-                                                                <a class="read_more" href="{% url 'logout' %}">Logout</a>
-                                                            </div>
-                                                        </div>
                                                     {% endif %}
-
-
                                                 </div>
                                             </div>
                                         </div>

@@ -11,7 +11,7 @@ def match_users(profile):
     # Calculate the similarity scores based on skills
     user_skills = Skill.objects.filter(user=profile.user).values_list('skill', flat=True)
     user_interests = Interest.objects.filter(user=profile.user).values_list('interest', flat=True)
-    all_profiles = Profile.objects.exclude(user=profile.user)
+    all_profiles = Profile.objects.exclude(user=profile.user).exclude(user__is_superuser=True)
     profiles_skills = all_profiles.annotate(num_skills=Count('user__skill')).filter(num_skills__gt=0).values_list('user__skill__skill', flat=True)
     profile_interests = all_profiles.annotate(num_interests=Count('user__interest')).filter(num_interests__gt=0).values_list('user__interest__interest', flat=True)
     vectorizer = CountVectorizer()

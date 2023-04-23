@@ -1,6 +1,7 @@
+{% extends 'users/users_base.html' %}
 {% load crispy_forms_tags %}
-<!DOCTYPE html>
-<html>
+{% block title %}Connect{% endblock %}
+{% block content %}
 <head>
     <title>Connect</title>
     <!-- Include necessary CSS files for styling -->
@@ -35,7 +36,7 @@
 </head>
 <body>
     <main role="main" class="container">
-        <h1>Connect with Mindlikes!</h1>
+        <h1 style="color: white;">Connect with Mindlikes!</h1>
         <div class="row">
           <div class="col-md-8">
             {% if messages %}
@@ -50,9 +51,11 @@
                 <ul class="list-group">
                    {% for profile, skills, interests in results %}
                     <li class="list-group-item d-flex justify-content-between align-items-center">
-                        <div>
+                        <!-- Profile Information -->
+                        <div> 
                             <h5 class="mb-0">{{ profile.user.first_name }} {{ profile.user.last_name }}</h5> <!-- First name and last name -->
                             <span class="text-secondary">{{ profile.school_name }}</span> <!-- School name -->
+                            <span class="badge badge-info badge-dark">GPA: {{ profile.gpa }}</span> <!-- Student Gpa -->
                             <span class="badge badge-info badge-pill">{{ profile.student_status }}</span> <!-- Student status -->
                             <div class="rating">
                                 <i class="fas fa-star"></i> <!-- Star icon for rating -->
@@ -60,6 +63,7 @@
                             </div>
                             <p class="text-secondary">{{ profile.bio }}</p>
                         </div>
+                        <!--  Skillset and interests -->
                         <div>
                             <div>
                                 Skills: 
@@ -77,8 +81,7 @@
                                 {% endfor %}
                             </div>
                         </div>
-
-                    
+                        <!-- Schedule button -->
                         <form method="POST" action="{% url 'profile' %}">
                             {% csrf_token %}
                             <button type="submit" class="btn btn-warning">Schedule</button>
@@ -91,5 +94,5 @@
         </div>
     </main>
 </body>
-</html>
+{% endblock %}
 

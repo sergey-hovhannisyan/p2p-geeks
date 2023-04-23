@@ -1,8 +1,18 @@
-{% extends 'users/users_base.html' %}
 {% load crispy_forms_tags %}
-{% block title %}Profile{% endblock %}
-{% block content %}
-    <main role="main" class="container-fluid" style="color: white;">
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Profile</title>
+    <!-- Include necessary CSS files for styling -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <div class="logo">
+        <a href="{% url 'index' %}">Home</a>
+        <a href="{% url 'connect' %}">Connect</a>
+        <a href="{% url 'logout' %}">Logout</a>
+    </div>
+</head>
+<body>
+    <main role="main" class="container-fluid">
         <div class="row">
             <div class="col-md-2">
                 {% if messages %}
@@ -80,4 +90,5 @@
             </div>
         </div>
     </main>
-{% endblock content %}
+</body>
+</html>
