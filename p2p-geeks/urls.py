@@ -29,8 +29,10 @@ urlpatterns = [
     path("profile/", user_views.profile, name="profile"),
     path("connect/", user_views.connect, name="connect"),
     path("login/", user_views.login, name="login"),
-    path("logout/", auth_views.LogoutView.as_view(template_name="index.html"), name="logout"),
-    path("signedin/", cache_page(60 * 15)(TemplateView.as_view(template_name="signed_in_home.html")), name="signed_in_home"),
-    path("", cache_page(60 * 15)(TemplateView.as_view(template_name="index.html")), name="index"),
+    path("logout/", auth_views.LogoutView.as_view(template_name="index.html"), name="logout"),  
+    path("", TemplateView.as_view(template_name="index.html"), name="index"),
+    path("", TemplateView.as_view(template_name="index.html"), name="signed_in_home"),
+    # path("", cache_page(60 * 15)(TemplateView.as_view(template_name="index.html")), name="signed_in_home"),
+    # path("", cache_page(60 * 15)(TemplateView.as_view(template_name="index.html")), name="index"),
 ] + post_urls.urlpatterns
 

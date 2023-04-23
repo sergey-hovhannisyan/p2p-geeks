@@ -48,24 +48,24 @@
                 <div class="row d_flex">
                     <div class="col-sm-3">
                         <div class="logo">
-                            <a href="index.html">P2P Geeks</a>
+                            <a href="{% url 'index' %}">P2P Geeks</a>
                         </div>
                     </div>
                     
                     <div class="col-sm-5">
-                        <ul class="social_icon text_align_right d_none">
+<!--                        <ul class="social_icon text_align_right d_none">
                             <li> <a href="Javascript:void(0)"><i class="fa fa-facebook-f"></i></a></li>
                             <li> <a href="Javascript:void(0)"><i class="fa fa-twitter"></i></a></li>
                             <li> <a href="Javascript:void(0)"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
                             <li> <a href="Javascript:void(0)"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
                             <li> <a href="Javascript:void(0)"><i class="fa fa-youtube-play" aria-hidden="true"></i></a></li>
-                        </ul>
+                        </ul> -->
                     </div>
 
                     <div class="col-sm-4">
                         <ul class="email text_align_right">
-                            <li class="d_none"><a href="Javascript:void(0)"><i class="fa fa-user" aria-hidden="true"></i></a></li>
-                            <li class="d_none"> <a href="Javascript:void(0)"><i class="fa fa-search" style="cursor: pointer;" aria-hidden="true"></i></a> </li>
+                            <li class="d_none"><a href="{% url 'profile' %}"><i class="fa fa-user" aria-hidden="true"></i></a></li>
+                            <!-- <li class="d_none"> <a href="Javascript:void(0)"><i class="fa fa-search" style="cursor: pointer;" aria-hidden="true"></i></a> </li> -->
                             <li>
                                 <button class="openbtn" onclick="openNav()"><img src="{% static 'images/menu_btn.png' %}"></button>
                             </li>
@@ -102,27 +102,28 @@
                                                     <h1>P2P Geeks:<br> Your Guide To Interview Success</h1>
                                                     <p>Prepare efficiently for software engineering roles through mock interviews 
                                                     </p>
+                                                    {% if not request.user.is_authenticated %}
+                                                        <div class="row">
+                                                            <div class="col-md-6">
+                                                            <div class="sign_up">
+                                                                <a class="read_more" href="{% url 'register' %}">Sign Up</a>
+                                                            </div>
+                                                        </div>
+                                                            <div class="col-md-6">
+                                                                <div class="log_in">
+                                                                    <a class="read_more" href="{% url 'login' %}">Login</a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    {% else %}
+                                                        <div class="row">
+                                                            <div class="col-md-6">
+                                                            <div class="log_out">
+                                                                <a class="read_more" href="{% url 'logout' %}">Logout</a>
+                                                            </div>
+                                                        </div>
+                                                    {% endif %}
 
-                                                    <div class="row">
-                                                        <div class="col-md-6">
-                                                        <div class="sign_up">
-                                                            <!-- <input class="info_button" placeholder="First Name">
-                                                            <input class="info_button" placeholder="Last Name">
-                                                            <input class="info_button" placeholder="Email">
-                                                            <input class="info_button" placeholder="Password" type="password"> -->
-                                                            <a class="read_more" href="Javascript:void(0)">Sign Up</a>
-                                                            <!-- Delete the fields and have the following line only to refer to register page 
-                                                            <a class="read_more" href=" {% url 'register' %}">Sign Up</a> -->
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                        <div class="sign_up">
-                                                            <!-- <input class="info_button" placeholder="Email">
-                                                            <input class="info_button" placeholder="Password" type="password"> -->
-                                                            <a class="read_more" href="Javascript:void(0)">Login</a>
-                                                        </div>
-                                                    </div>
-                                                    </div>
 
                                                 </div>
                                             </div>
@@ -149,11 +150,13 @@
                     </div>
                 </div>
                 <div class="col-lg-3 col-sm-6">
+                    <a href="{% url 'connect' %}">
                     <div id="wa_hover" class="wallet_box text_align_center" style="height: 200px">
                         <!-- <i><img src="images/wa2.svg" alt="#"/></i> -->
-                        <h3>Learn</h3>
-                        <p>Learn the fundamental structures and technical knowledge necessary to pass interviews</p>
+                        <h3>Connect</h3>
+                        <p>Join mindlikes, connect with like-minded individuals, and collaboratively foster personal growth</p>
                     </div>
+                    </a>
                 </div>
                 <div class="col-lg-3 col-sm-6">
                     <div id="wa_hover" class="wallet_box text_align_center" style="height: 200px">
@@ -200,7 +203,7 @@
         </div>
     </div>
     <!-- contact -->
-    <div class="contact">
+<!--     <div class="contact">
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
@@ -236,7 +239,7 @@
             </div>
         </div>
     </div>
-
+ -->
     <p class="copyright">Copyright © 2023 P2P Geeks All Rights Reserved</p>
       <!-- Javascript files-->
       <script src="{% static 'js/jquery.min.js' %}"></script>

@@ -4,8 +4,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from .models import Skill, Profile, Interest
 from django.contrib.auth.views import LoginView
-#from .matching import match_users
-
+from .matching import match_users
 
 def login(request):
     if request.user.is_authenticated:
@@ -73,18 +72,37 @@ def profile(request):
 
 @login_required
 def connect(request):
-    profiles = Profile.objects.exclude(user=request.user)
+    current_profile = Profile.objects.filter(user=request.user).first()
+    profiles = match_users(current_profile)
     skills_lists = []
+    interest_lists = []
     for profile in profiles:
         skills = Skill.objects.filter(user=profile.user)
+        interests = Interest.objects.filter(user=profile.user)
         skills_lists.append(list(skills))
+        interest_lists.append(list(interests))
 
-    results = zip(profiles, skills_lists)
+    results = zip(profiles, skills_lists, interest_lists)
     context = {
         "results" : results,
     }
     return render(request, 'connect.html', context)
 
-@login_required
-def follow_user(request):
-    return
+
+# @login_required
+# def connect(request):
+#     profiles = Profile.objects.exclude(user=request.user)
+#     skills_lists = []
+#     interest_lists = []
+#     for profile in profiles:
+#         skills = Skill.objects.filter(user=profile.user)
+#         interests = Interest.objects.filter(user=profile.user)
+#         skills_lists.append(list(skills))
+#         interest_lists.append(list(interests))
+
+#     results = zip(profiles, skills_lists, interest_lists)
+#     context = {
+#         "results" : results,
+#     }
+#     return render(request, 'connect.html', context)
+
