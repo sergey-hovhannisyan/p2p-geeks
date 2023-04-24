@@ -1,6 +1,7 @@
+{% extends 'users/users_base.html' %}
 {% load crispy_forms_tags %}
-<!DOCTYPE html>
-<html>
+{% block title %}Connect{% endblock %}
+{% block content %}
 <head>
     <title>Connect</title>
     <!-- Include necessary CSS files for styling -->
@@ -35,7 +36,7 @@
 </head>
 <body>
     <main role="main" class="container">
-        <h1>Connect with Mindlikes!</h1>
+        <h1 style="color: white;">Connect with Mindlikes!</h1>
         <div class="row">
           <div class="col-md-8">
             {% if messages %}
@@ -48,29 +49,42 @@
             <!-- List the profiles here -->
             <div class="profile-card">
                 <ul class="list-group">
-                   {% for profile, skills in results %}
+                   {% for profile, skills, interests in results %}
                     <li class="list-group-item d-flex justify-content-between align-items-center">
-                        <div>
+                        <!-- Profile Information -->
+                        <div> 
                             <h5 class="mb-0">{{ profile.user.first_name }} {{ profile.user.last_name }}</h5> <!-- First name and last name -->
                             <span class="text-secondary">{{ profile.school_name }}</span> <!-- School name -->
-                            <span class="badge badge-primary badge-pill">{{ profile.student_status }}</span> <!-- Student status -->
+                            <span class="badge badge-info badge-dark">GPA: {{ profile.gpa }}</span> <!-- Student Gpa -->
+                            <span class="badge badge-info badge-pill">{{ profile.student_status }}</span> <!-- Student status -->
                             <div class="rating">
                                 <i class="fas fa-star"></i> <!-- Star icon for rating -->
                                 <span>{{ profile.overall_rating }}</span> <!-- Overall rating -->
                             </div>
                             <p class="text-secondary">{{ profile.bio }}</p>
                         </div>
+                        <!--  Skillset and interests -->
                         <div>
-                            {% for skill in skills|slice:":7" %}
-                            <button type="button" class="btn btn-secondary btn-sm" style="margin-bottom: 1px;" disabled="true">
-                                <span class="small">{{skill}}</span> </button>
-                            {% endfor %}
+                            <div>
+                                Skills: 
+                                {% for skill in skills|slice:":7" %}
+                                <button type="button" class="btn btn-primary btn-sm" style="margin-bottom: 1px;" disabled="true">
+                                    <span class="small">{{skill}}</span> </button>
+                                {% endfor %}
+                            </div>
+                            <br>
+                            <div>
+                                Interested in: 
+                                {% for interest in interests|slice:":7" %}
+                                <button type="button" class="btn btn-success btn-sm" style="margin-bottom: 1px;" disabled="true">
+                                    <span class="small">{{interest}}</span> </button>
+                                {% endfor %}
+                            </div>
                         </div>
-
-                    
+                        <!-- Schedule button -->
                         <form method="POST" action="{% url 'profile' %}">
                             {% csrf_token %}
-                            <button type="submit" class="btn btn-primary">Schedule</button>
+                            <button type="submit" class="btn btn-warning">Schedule</button>
                         </form>
                     </li>
                 {% endfor %}
@@ -80,5 +94,5 @@
         </div>
     </main>
 </body>
-</html>
+{% endblock %}
 

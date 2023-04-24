@@ -25,7 +25,7 @@ SECRET_KEY = "django-insecure-6i=l4df&kz01$(+d%0pqm*05-x6)^9vsu608dxdjf^9k26is%%
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 
 
 # Application definition
@@ -66,7 +66,8 @@ TEMPLATES = [
         "BACKEND": "django.template.backends.django.DjangoTemplates",
         "DIRS": [
             os.path.join(BASE_DIR, "templates"),
-            os.path.join(BASE_DIR, "templates/posts")       
+            os.path.join(BASE_DIR, "templates/posts"),
+            os.path.join(BASE_DIR, "templates/users")       
         ],
         "APP_DIRS": True,
         "OPTIONS": {
