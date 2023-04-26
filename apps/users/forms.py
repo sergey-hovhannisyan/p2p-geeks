@@ -21,7 +21,7 @@ class UserUpdateForm(forms.ModelForm):
 class ProfileUpdateForm(forms.ModelForm):
     class Meta:
         model = Profile
-        fields = ['school_name', 'gpa', 'student_status', 'bio']
+        fields = ['calendly_link', 'zoom_meeting_link', 'bio', 'school_name', 'student_status', 'gpa']
 
 class SkillUpdateForm(forms.ModelForm):
     class Meta:

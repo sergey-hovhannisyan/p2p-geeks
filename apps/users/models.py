@@ -72,6 +72,7 @@ class Profile(models.Model):
     student_status = models.CharField(max_length=10, choices=STUDENT_STATUS_CHOICES, blank=True)
     date_of_birth = models.DateField(null=True, blank=True)
     calendly_link = models.URLField(blank=True)
+    zoom_meeting_link = models.URLField(blank=True)
 
     
     def __str__(self):
