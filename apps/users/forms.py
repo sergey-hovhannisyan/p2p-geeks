@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
-from .models import Profile, Skill, Interest
+from .models import Profile, Skill, Interest, Interview
 from django.core.exceptions import ValidationError
 
 
@@ -22,6 +22,20 @@ class ProfileUpdateForm(forms.ModelForm):
     class Meta:
         model = Profile
         fields = ['calendly_link', 'zoom_meeting_link', 'bio', 'school_name', 'student_status', 'gpa']
+
+    # TODO: Validate the links
+    # def __init__(self, *args, **kwargs):
+    #     self.user = kwargs.pop('user')
+    #     super(ProfileUpdateForm, self).__init__(*args, **kwargs)
+
+    # def validate_calendly(self, commit=True):
+    #     verified_start = "https://calendly.com/"
+    #     calendly_link = self.cleaned_data.get('calendly_link')
+    #     print(calendly_link, "HELLLO!!!!!!!")
+    #     # if calendly_link[:len(verified_start)] != verified_start:
+    #     #     raise forms.ValidationError("This is not a valid calendly link!")
+    #     return calendly_link
+
 
 class SkillUpdateForm(forms.ModelForm):
     class Meta:

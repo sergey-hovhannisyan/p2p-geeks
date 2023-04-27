@@ -237,11 +237,13 @@ class Interest(models.Model):
     class Meta:
         unique_together = ("interest", "user")
     
-class Follow(models.Model):
+class Interview(models.Model):
     id = models.AutoField(primary_key=True)
-    date_followed = models.DateField(default=timezone.now)
-    follower = models.ForeignKey(User, on_delete=models.CASCADE, related_name='following_set')
-    following = models.ForeignKey(User, on_delete=models.CASCADE, related_name='follower_set')
+    interview_date = models.DateField(default=timezone.now)
+    requesting_user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="interviewee")
+    interviewer = models.ForeignKey(User, on_delete=models.CASCADE, related_name="interviewer")
+    rating = models.IntegerField(default=0)
+    review = models.TextField()
 
     def __str__(self):
-        return f"{self.follower}, follows {self.following}"
+        return self.content[:100]
