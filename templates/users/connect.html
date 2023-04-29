@@ -82,7 +82,7 @@
                             </div>
                         </div>
                         <!-- Schedule button -->
-                        <form method="POST" action="{% url 'profile' %}">
+                        <form action={{profile.calendly_link}} target="_blank">
                             {% csrf_token %}
                             <button type="submit" class="btn btn-warning">Schedule</button>
                         </form>
