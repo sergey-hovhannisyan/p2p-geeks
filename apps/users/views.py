@@ -1,8 +1,8 @@
 from django.shortcuts import render, redirect
-from .forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm, SkillUpdateForm, InterestUpdateForm
+from .forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm, SkillUpdateForm, InterestUpdateForm, ReviewForm
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from .models import Skill, Profile, Interest
+from .models import Skill, Profile, Interest, Interview
 from django.contrib.auth.views import LoginView
 from .matching import match_users
 
@@ -87,6 +87,32 @@ def connect(request):
         "results" : results,
     }
     return render(request, 'connect.html', context)
+
+@login_required
+def review(request):
+    context = {}
+    form = ReviewForm(request.POST or None)
+    if request.method == "POST":
+        if form.is_valid():
+            print("\n\n its valid")
+            reviewer = Interview(user=request.user)
+            review = form.save(commit=False)
+            review.user = reviewer
+            review.save()
+            form.save_m2m()
+            return redirect("forums")
+    context.update({
+        "form": form,
+        "title": "Create New Post"
+    })
+    return render(request, "review.html", context)
+
+@login_required
+def interviews(request):
+    return render(request, "interviews.html")
+    # if request.method == "GET":
+    #     upcoming = 
+    #     pass
 
 def handler404(request, exception):
     return render(request, '404.html', status=404)

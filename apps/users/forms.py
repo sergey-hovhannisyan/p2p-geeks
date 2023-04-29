@@ -81,3 +81,8 @@ class InterestUpdateForm(forms.ModelForm):
         if commit:
             instance.save()
         return instance
+
+class ReviewForm(forms.ModelForm):
+    class Meta:
+        model = Interview
+        fields = ['rating', 'review']
