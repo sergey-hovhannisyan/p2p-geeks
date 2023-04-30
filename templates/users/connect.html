@@ -33,6 +33,11 @@
             color: #FFD700;
         }
     </style>
+    <script>
+        function clickAlert() {
+          alert("This user's calendly has not been configured!");
+        }
+    </script>
 </head>
 <body>
     <main role="main" class="container">
@@ -82,10 +87,13 @@
                             </div>
                         </div>
                         <!-- Schedule button -->
+                        {% if profile.calendly_link %}
                         <form action={{profile.calendly_link}} target="_blank">
-                            {% csrf_token %}
                             <button type="submit" class="btn btn-warning">Schedule</button>
                         </form>
+                        {% else %}
+                          <input type="button" onclick="clickAlert()" value="Schedule" class="btn btn-warning">
+                          {% endif %}
                     </li>
                 {% endfor %}
                 </ul>
