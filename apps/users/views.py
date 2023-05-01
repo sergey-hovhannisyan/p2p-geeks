@@ -1,8 +1,9 @@
 from django.shortcuts import render, redirect
-from .forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm, SkillUpdateForm, InterestUpdateForm, ReviewForm
+from .forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm, SkillUpdateForm, InterestUpdateForm, ReviewForm, ScheduleForm
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from .models import Skill, Profile, Interest, Interview
+from django.contrib.auth.models import User
 from django.contrib.auth.views import LoginView
 from .matching import match_users
 
@@ -86,6 +87,12 @@ def connect(request):
     context = {
         "results" : results,
     }
+
+    if request.method == "POST":
+        username = request.POST.get('username')
+        request.session['username'] = username
+        return redirect('schedule')
+
     return render(request, 'connect.html', context)
 
 @login_required
@@ -113,6 +120,26 @@ def interviews(request):
     # if request.method == "GET":
     #     upcoming = 
     #     pass
+
+@login_required
+def schedule(request):
+    print()
+    username = request.session.get('username')
+    interviewer = User.objects.get(username=username)
+    
+    initial = {
+        'requesting_user': request.user,
+        'interviewer': interviewer,
+    }
+    print("Initial: ", initial)
+
+    form = ScheduleForm(request.POST or None, initial=initial)
+    if request.method == "POST":
+        if form.is_valid():
+            form.save()
+            return redirect('interviews')
+        
+    return render(request, "schedule.html", {"form": form})
 
 def handler404(request, exception):
     return render(request, '404.html', status=404)

@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Review</title>
+    <title>Schedule</title>
     <!-- Include necessary CSS files for styling -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 </head>
@@ -22,17 +22,19 @@
                     <!-- Include CSRF token here -->
                     {% csrf_token %}
                     <fieldset class="form-group">
-                        <legend class="border-bottom mb-4">Rate your interview with {{user}} on {{date}}</legend>
-                        {{ form|crispy }}
+                        <legend class="border-bottom mb-4">Where you able to schedule an interview?</legend>
+                        {{ form.as_p }}
                     </fieldset>
                     <div class="form-group">
                         <button class="btn btn-outline-info" type="submit">Submit</button>
                     </div>
                 </form>
 
+                <button class="btn btn-outline-info" type="submit" onclick="window.open('{% url 'connect' %}', '_self')">Cancel</button>
+                <br></br>
                 <div class="border-top pt-3">
                     <small class="text-muted">
-                        Finished Reviewing? <a class="ml-2" href="{% url 'index' %}">Return Home</a>
+                        Do you no longer wish to schedule a meeting? <a class="ml-2" href="{% url 'connect' %}">Go Back</a>
                     </small>
                 </div>
             </div>

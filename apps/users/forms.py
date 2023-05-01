@@ -23,20 +23,6 @@ class ProfileUpdateForm(forms.ModelForm):
         model = Profile
         fields = ['calendly_link', 'zoom_meeting_link', 'bio', 'school_name', 'student_status', 'gpa']
 
-    # TODO: Validate the links
-    # def __init__(self, *args, **kwargs):
-    #     self.user = kwargs.pop('user')
-    #     super(ProfileUpdateForm, self).__init__(*args, **kwargs)
-
-    # def validate_calendly(self, commit=True):
-    #     verified_start = "https://calendly.com/"
-    #     calendly_link = self.cleaned_data.get('calendly_link')
-    #     print(calendly_link, "HELLLO!!!!!!!")
-    #     # if calendly_link[:len(verified_start)] != verified_start:
-    #     #     raise forms.ValidationError("This is not a valid calendly link!")
-    #     return calendly_link
-
-
 class SkillUpdateForm(forms.ModelForm):
     class Meta:
         model = Skill
@@ -86,3 +72,18 @@ class ReviewForm(forms.ModelForm):
     class Meta:
         model = Interview
         fields = ['rating', 'review']
+
+class DateInput(forms.DateInput):
+    input_type = 'date'
+
+class ScheduleForm(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        super(ScheduleForm, self).__init__(*args, **kwargs)
+        self.fields['interview_date'].label = 'What day are you going to meet?'
+
+    class Meta:
+        model = Interview
+        fields = [ 'interview_date', 'requesting_user', 'interviewer']
+        widgets = {
+            'interview_date': DateInput(),
+        }
