@@ -244,4 +244,4 @@ class Interview(models.Model):
     requesting_user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="interviewee")
     interviewer = models.ForeignKey(User, on_delete=models.CASCADE, related_name="interviewer")
     rating = models.IntegerField(default=0)
-    review = models.TextField()
+    review = models.TextField(null=True)

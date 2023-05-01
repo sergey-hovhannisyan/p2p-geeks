@@ -6,6 +6,7 @@ from .models import Skill, Profile, Interest, Interview
 from django.contrib.auth.models import User
 from django.contrib.auth.views import LoginView
 from .matching import match_users
+import datetime
 
 def login(request):
     if request.user.is_authenticated:
@@ -97,29 +98,48 @@ def connect(request):
 
 @login_required
 def review(request):
-    context = {}
-    form = ReviewForm(request.POST or None)
+    print()
+    id = request.session.get('id')
+    print("INTERVIEW ID ", id)
+    interview = Interview.objects.get(id=id)
+
+    form = ReviewForm(request.POST or None, instance=interview)
     if request.method == "POST":
         if form.is_valid():
-            print("\n\n its valid")
-            reviewer = Interview(user=request.user)
-            review = form.save(commit=False)
-            review.user = reviewer
-            review.save()
-            form.save_m2m()
-            return redirect("forums")
-    context.update({
-        "form": form,
-        "title": "Create New Post"
-    })
-    return render(request, "review.html", context)
+            form.save()
+            return redirect('interviews')
+        
+    return render(request, "review.html", {"form": form})
 
 @login_required
 def interviews(request):
-    return render(request, "interviews.html")
-    # if request.method == "GET":
-    #     upcoming = 
-    #     pass
+    today = datetime.date.today()
+    next_year = today.replace(year=today.year + 1)
+    old = today.replace(year=today.year - 2)
+
+    upcoming = Interview.objects.filter(requesting_user=request.user, interview_date__range=[str(today), str(next_year)])
+    upcoming2 = Interview.objects.filter(interviewer=request.user, interview_date__range=[str(today), str(next_year)])
+    upcoming_list = list(upcoming)
+    upcoming_list += list(upcoming2)
+
+    past_interviews = Interview.objects.filter(requesting_user=request.user, interview_date__range=[str(old), str(today)])
+    past_meetings = list(past_interviews)
+
+    meeting_to_review = Interview.objects.filter(interviewer=request.user, interview_date__range=[str(old), str(today)])
+    to_review = list(meeting_to_review)
+
+    context = {
+        "upcoming_list": upcoming_list,
+        "past_meetings": past_meetings,
+        "to_review": to_review,
+    }
+
+    if request.method == "POST":
+        id = request.POST.get('id')
+        request.session['id'] = id
+        return redirect('review')
+
+    return render(request, "interviews.html", context)
 
 @login_required
 def schedule(request):
