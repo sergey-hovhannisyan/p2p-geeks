@@ -140,11 +140,13 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-3 col-sm-6">
+                    <a href = "{% url ''}">
                     <div id="wa_hover" class="wallet_box text_align_center" style="height: 200px">
                         <!-- <i><img src="images/wa1.svg" alt="#"/></i> -->
                         <h3>Mock Interviews</h3>
                         <p>Be on both sides of the interview process by participating and leading mock interviews</p>
                     </div>
+                    </a>    
                 </div>
                 <div class="col-lg-3 col-sm-6">
                     <a href="{% url 'connect' %}">
@@ -162,13 +164,18 @@
                         <p>Practice technical questions alone prior to facing an interview from a myriad of problems</p>
                     </div>
                 </div>
-                <div class="col-lg-3 col-sm-6" href="{% url 'forums' %}">
+                
+                <div class="col-lg-3 col-sm-6" >
+                    <a href="{% url 'forums' %}">
                     <div id="wa_hover" class="wallet_box text_align_center" style="height: 200px">
                         <!-- <i><img src="images/wa4.svg" alt="#"/></i> -->
                         <h3>Discussion Board</h3>
                         <p>Spark a converstion and speak with others about tips and tricks you've learned along the way</p>
+
                     </div>
+                    </a>
                 </div>
+            </a>
             </div>
         </div>
     </div>

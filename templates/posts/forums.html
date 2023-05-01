@@ -1,7 +1,7 @@
 {% extends 'posts/base.html' %}
 
 {% block content %}
-
+<body>
     <div class="container">
         <div class="subforum">
             {% if forums %}
@@ -55,5 +55,6 @@
             <span>Check <a href="{% url 'latest_posts' %}">the latest posts</a></span><br>
         {% endif %}
     </div>
+</body>
 
     {% endblock content %}
