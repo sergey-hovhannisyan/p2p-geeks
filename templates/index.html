@@ -69,8 +69,7 @@
                         {% if request.user.is_authenticated %}
                             <li class="d_none"><a href="{% url 'profile' %}"><i class="fa fa-user" aria-hidden="true"></i></a></li>
                             <li class="nav-item"><a href="{% url 'connect' %}" style="color: white;">Connect</a></li>
-
-                            <li><a href="{% url 'logout' %}" style="color: white;">Logout</a></li>
+                            <li class="nav-item"><a href="{% url 'logout' %}" style="color: white;">Logout</a></li>
                         {% endif %}
                             <!-- <li>
                                 <button class="openbtn" onclick="openNav()"><img src="{% static 'images/menu_btn.png' %}"></button>
@@ -140,11 +139,13 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-3 col-sm-6">
+                    <a href = "{% url ''}">
                     <div id="wa_hover" class="wallet_box text_align_center" style="height: 200px">
                         <!-- <i><img src="images/wa1.svg" alt="#"/></i> -->
                         <h3>Mock Interviews</h3>
                         <p>Be on both sides of the interview process by participating and leading mock interviews</p>
                     </div>
+                    </a>    
                 </div>
                 <div class="col-lg-3 col-sm-6">
                     <a href="{% url 'connect' %}">
@@ -162,13 +163,18 @@
                         <p>Practice technical questions alone prior to facing an interview from a myriad of problems</p>
                     </div>
                 </div>
-                <div class="col-lg-3 col-sm-6" href="{% url 'forums' %}">
+                
+                <div class="col-lg-3 col-sm-6" >
+                    <a href="{% url 'forums' %}">
                     <div id="wa_hover" class="wallet_box text_align_center" style="height: 200px">
                         <!-- <i><img src="images/wa4.svg" alt="#"/></i> -->
                         <h3>Discussion Board</h3>
                         <p>Spark a converstion and speak with others about tips and tricks you've learned along the way</p>
+
                     </div>
+                    </a>
                 </div>
+            </a>
             </div>
         </div>
     </div>
