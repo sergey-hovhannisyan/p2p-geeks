@@ -150,20 +150,26 @@ def schedule(request):
     print()
     username = request.session.get('username')
     interviewer = User.objects.get(username=username)
-    
+
     initial = {
-        'requesting_user': request.user,
-        'interviewer': interviewer,
+        "requesting_user": request.user,
+        "interviewer": interviewer,
     }
-    print("Initial: ", initial)
 
     form = ScheduleForm(request.POST or None, initial=initial)
     if request.method == "POST":
         if form.is_valid():
             form.save()
             return redirect('interviews')
+        else:
+            messages.warning(request, f'That is not a valid date')
+            return redirect('schedule')
+
+    context = {
+        "form": form,
+    }
         
-    return render(request, "schedule.html", {"form": form})
+    return render(request, "schedule.html", context=context)
 
 def handler404(request, exception):
     return render(request, '404.html', status=404)

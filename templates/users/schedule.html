@@ -1,6 +1,7 @@
+{% extends 'users/users_base.html' %}
 {% load crispy_forms_tags %}
-<!DOCTYPE html>
-<html>
+{% block title %}Schedule{% endblock %}
+{% block content %}
 <head>
     <title>Schedule</title>
     <!-- Include necessary CSS files for styling -->
@@ -22,8 +23,10 @@
                     <!-- Include CSRF token here -->
                     {% csrf_token %}
                     <fieldset class="form-group">
-                        <legend class="border-bottom mb-4">Where you able to schedule an interview?</legend>
+                        <legend class="border-bottom mb-4" style="color: white">Where you able to schedule an interview?</legend>
+                        <br></br>
                         {{ form.as_p }}
+                        <br></br>
                     </fieldset>
                     <div class="form-group">
                         <button class="btn btn-outline-info" type="submit">Submit</button>
@@ -41,10 +44,6 @@
           </div>
         </div>
       </main>
-    <!-- Include necessary JS files for functionality -->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 </body>
-</html>
+{% endblock content %}
 
