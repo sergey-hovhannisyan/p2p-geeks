@@ -39,18 +39,21 @@ body {
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
+    margin: 0px;
+    height: 100vh;
 }
+
 
 /* ########################################### */
 /*           Forums.html                       */
 /* ########################################### */
 .container{
-    margin: 20px;
-    padding: 20px;
+    margin: 18px,15px,;
+    padding: 18px;
 }
 
 .subforum{
-    margin-top:20px;
+    margin-top:18px;
 }
 
 .subforum-title{
@@ -277,6 +280,9 @@ header{
 
 /* forum info Styling */
 .forum-info{
+    margin-top:20px;
+    margin-left: 10px;
+    margin-right: 10px;
     padding: 1%;
     background-color: #111314;
 }
@@ -426,7 +432,6 @@ footer{
 .body{
     display: flex;
     background-color: #131415;
-    padding: 10px;
     margin-top: 5px;
 }
 
@@ -475,8 +480,6 @@ footer{
     --border-width: .125em;
     --curve-size: .5em;
     --bg: #adaab3;
-    --color: #afffff;
-      /* use position: relative; so that BG is only for .btn */
     position: relative;
     isolation: isolate;
     display: inline-grid;
@@ -487,19 +490,13 @@ footer{
     text-transform: uppercase;
     box-shadow: 10px 10px 20px rgba(0, 0, 0, .6);
     clip-path: polygon(
-              /* Top-left */
               0% var(--curve-size),
-  
               var(--curve-size) 0,
-              /* top-right */
               100% 0,
               100% calc(100% - var(--curve-size)),
-  
-              /* bottom-right 1 */
               calc(100% - var(--curve-size)) 100%,
-              /* bottom-right 2 */
               0 100%);
-    transition: color 250ms;
+    transition: ease-in 0.25s;
   }
   
   .btn::after,
@@ -588,6 +585,13 @@ footer{
     color: #636363;
   }
 
+  .copyright {
+    position: absolute;
+    bottom: 0%;
+    margin-top: 7px;
+    margin-bottom: 0px;
+    padding-top: 7px;
+}
 
 
 
