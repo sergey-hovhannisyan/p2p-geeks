@@ -18,7 +18,7 @@
         <div class="navbar">
             <nav>
                 <ul class="nav-list">
-                    <li class="nav-item"><a href="{% url 'index.html'}">Home</a></li>
+                    <li class="nav-item"><a href="{% url 'index' %}">Home</a></li>
                     {% if user.is_authenticated %}
                     <li class="nav-item"><a href="{% url 'logout' %}">Logout</a></li>
                     {% else %}

@@ -1,6 +1,7 @@
+{% extends 'users/users_base.html' %}
 {% load crispy_forms_tags %}
-<!DOCTYPE html>
-<html>
+{% block title %}Interviews{% endblock %}
+{% block content %}
 <head>
     <title>Interviews</title>
     <!-- Include necessary CSS files for styling -->
@@ -43,7 +44,7 @@
             {% endif %}
             
             <!-- UPCOMING INTERVIEWS -->
-            <h3 style="color: black;">View your upcoming interviews</h3>
+            <h3 style="color: white;">Upcoming Interviews</h3>
             <div class="profile-card">
                 <ul class="list-group">
                    {% for interview in upcoming_list %}
@@ -60,7 +61,7 @@
             </div>
 
             <!-- PAST INTERVIEWS  -->
-            <h3 style="color: black;">Past interviews you Scheduled</h3>
+            <h3 style="color: white;">Your Past Interviews</h3>
             <div class="profile-card">
                 <ul class="list-group">
                     {% for interview in past_meetings %}
@@ -81,7 +82,7 @@
             </div>
 
             <!-- PAST INTERVIEWS TO REVIEW -->
-            <h3 style="color: black;">Past interviews To Leave Feedback For</h3>
+            <h3 style="color: white;">Rate your peer's interview</h3>
             <div class="profile-card">
                 <ul class="list-group">
                     {% for interview in to_review %}
@@ -101,22 +102,13 @@
                 </ul>
             </div>
             
-            
-            <!-- Form for leaving reviews -->
-            <div class="content-section">
-                <div class="border-top pt-3">
-                    <small class="text-muted">
-                        Done reviewing your interviews? <a class="ml-2" href="{% url 'index' %}">Return Home</a>
-                    </small>
-                </div>
-            </div>
           </div>
         </div>
       </main>
-    <!-- Include necessary JS files for functionality -->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 </body>
-</html>
+{% endblock %}
+
+
+
+
 

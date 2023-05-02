@@ -107,7 +107,11 @@ def review(request):
     if request.method == "POST":
         if form.is_valid():
             form.save()
+            messages.success(request, f'Your review was sent!')
             return redirect('interviews')
+        else:
+            messages.warning(request, f'Rating is on a scale from 0-5.')
+            return redirect("review")
         
     return render(request, "review.html", {"form": form})
 

@@ -1,6 +1,7 @@
+{% extends 'users/users_base.html' %}
 {% load crispy_forms_tags %}
-<!DOCTYPE html>
-<html>
+{% block title %}Connect{% endblock %}
+{% block content %}
 <head>
     <title>Review</title>
     <!-- Include necessary CSS files for styling -->
@@ -22,7 +23,7 @@
                     <!-- Include CSRF token here -->
                     {% csrf_token %}
                     <fieldset class="form-group">
-                        <legend class="border-bottom mb-4">Review this Mock Interview</legend>
+                        <legend class="border-bottom mb-4" style="color: white">Review this Mock Interview</legend>
                         {{ form.as_p }}
                     </fieldset>
                     <div class="form-group">
@@ -39,10 +40,7 @@
           </div>
         </div>
       </main>
-    <!-- Include necessary JS files for functionality -->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 </body>
 </html>
+{% endblock %}
 

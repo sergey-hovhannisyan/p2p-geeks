@@ -243,5 +243,5 @@ class Interview(models.Model):
     interview_date = models.DateField()
     requesting_user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="interviewee")
     interviewer = models.ForeignKey(User, on_delete=models.CASCADE, related_name="interviewer")
-    rating = models.IntegerField(default=0)
-    review = models.TextField(null=True)
+    rating = models.IntegerField(default=0, validators=[MinValueValidator(0), MaxValueValidator(5)])
+    review = models.TextField()
