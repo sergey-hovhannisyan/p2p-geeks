@@ -68,7 +68,7 @@
                             <!-- <li class="d_none"> <a href="Javascript:void(0)"><i class="fa fa-search" style="cursor: pointer;" aria-hidden="true"></i></a> </li> -->
                         {% if request.user.is_authenticated %}
                             <li class="d_none"><a href="{% url 'profile' %}"><i class="fa fa-user" aria-hidden="true"></i></a></li>
-                            <li class="nav-item"><a href="{% url 'interviews' %}" ></a></li>
+                            <li class="nav-item"><a href="{% url 'interviews' %}" style="color: white;">Interview</a></li>
                             <li class="nav-item"><a href="{% url 'connect' %}" style="color: white;">Connect</a></li>
                             <li class="nav-item"><a href="{% url 'logout' %}" style="color: white;">Logout</a></li>
                         {% endif %}
