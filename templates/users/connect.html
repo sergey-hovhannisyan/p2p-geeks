@@ -33,6 +33,18 @@
             color: #FFD700;
         }
     </style>
+    <script>
+        function clickAlert() {
+          alert("This user's calendly has not been configured!");
+        }
+
+        function openPages(calendly, scheduler) {
+            console.log(calendly);
+            console.log(scheduler);
+            window.open(calendly);
+            window.open(scheduler);
+        }
+    </script>
 </head>
 <body>
     <main role="main" class="container">
@@ -82,10 +94,15 @@
                             </div>
                         </div>
                         <!-- Schedule button -->
-                        <form method="POST" action="{% url 'profile' %}">
+                        {% if profile.calendly_link %}
+                        <form method="POST">
                             {% csrf_token %}
-                            <button type="submit" class="btn btn-warning">Schedule</button>
+                            <button type="submit" class="btn btn-warning" name="username" value="{{profile.user}}"
+                            onclick="window.open('{{profile.calendly_link}}');">Schedule</button>
                         </form>
+                        {% else %}
+                          <input type="button" onclick="clickAlert()" value="Schedule" class="btn btn-warning">
+                        {% endif %}
                     </li>
                 {% endfor %}
                 </ul>
@@ -94,5 +111,5 @@
         </div>
     </main>
 </body>
-{% endblock %}
+{% endblock content %}
 

@@ -1,0 +1,114 @@
+{% extends 'users/users_base.html' %}
+{% load crispy_forms_tags %}
+{% block title %}Interviews{% endblock %}
+{% block content %}
+<head>
+    <title>Interviews</title>
+    <!-- Include necessary CSS files for styling -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <style>
+        .profile-card {
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 10px;
+            margin-bottom: 10px;
+            background-color: #f9f9f9;
+        }
+
+        .profile-card h5 {
+            margin-bottom: 5px;
+        }
+
+        .container {
+            max-width: 2000px;
+        }
+        .profile-card .badge {
+            margin-left: 5px;
+        }
+
+        .profile-card .rating {
+            color: #FFD700;
+        }
+    </style>
+</head>
+<body>
+    <main role="main" class="container">
+        <div class="row">
+          <div class="col-md-8">
+            {% if messages %}
+            {% for message in messages %}
+                <div class="alert alert-{{ message.tags}}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+            {% endif %}
+            
+            <!-- UPCOMING INTERVIEWS -->
+            <h3 style="color: white;">Upcoming Interviews</h3>
+            <div class="profile-card">
+                <ul class="list-group">
+                   {% for interview in upcoming_list %}
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        <!-- Profile Information -->
+                        <div> 
+                            <h5 class="mb-0">{{ interview.interviewer.username }} and {{ interview.requesting_user.username }}</h5> 
+                            <span class="badge badge-info badge-pill">{{ interview.interview_date }}</span> 
+                            <p class="text-secondary">{{ interview.requesting_user.profile.zoom_meeting_link }}</p>
+                        </div>
+                    </li>
+                {% endfor %}
+                </ul>
+            </div>
+
+            <!-- PAST INTERVIEWS  -->
+            <h3 style="color: white;">Your Past Interviews</h3>
+            <div class="profile-card">
+                <ul class="list-group">
+                    {% for interview in past_meetings %}
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        <!-- Profile Information -->
+                        <div> 
+                            <h5 class="mb-0">{{ interview.interviewer.username }} and {{ interview.requesting_user.username }}</h5> 
+                            <span class="badge badge-info badge-pill">{{ interview.interview_date }}</span> 
+                            <div class="rating">
+                                <i class="fa fa-star"></i> <!-- Star icon for rating -->
+                                <span>{{ interview.rating }}/5</span> <!-- Overall rating -->
+                            </div>
+                            <p class="text-secondary">{{ interview.review }}</p>
+                        </div>
+                    </li>
+                {% endfor %}
+                </ul>
+            </div>
+
+            <!-- PAST INTERVIEWS TO REVIEW -->
+            <h3 style="color: white;">Rate your peer's interview</h3>
+            <div class="profile-card">
+                <ul class="list-group">
+                    {% for interview in to_review %}
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        <!-- Profile Information -->
+                        <div> 
+                            <h5 class="mb-0">{{ interview.interviewer.username }} and {{ interview.requesting_user.username }}</h5> 
+                            <span class="badge badge-info badge-pill">{{ interview.interview_date }}</span> 
+                        </div>
+
+                        <form method="POST">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-warning" name="id" value="{{interview.id}}">Review</button>
+                        </form>
+                    </li>
+                {% endfor %}
+                </ul>
+            </div>
+            
+          </div>
+        </div>
+      </main>
+</body>
+{% endblock content %}
+
+
+
+
+

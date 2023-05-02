@@ -26,11 +26,6 @@
 <!-- body -->
 
 <body class="main-layout">
-    <!-- loader  -->
-<!--     <div class="loader_bg">
-        <div class="loader"><img src="{% static 'images/loading.gif' %}" alt="" /></div>
-    </div> -->
-    <!-- end loader -->
     <div id="mySidepanel" class="sidepanel">
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
         <a class="active" href="index.html">Home</a>
@@ -54,8 +49,8 @@
 
                     <div class="col-sm-4">
                         <ul class="email text_align_right">
-                            <li class="nav-item"><a href="{% url 'connect' %}" style="color: white;">Connect</a></li>
                             <li class="d_none"><a href="{% url 'profile' %}"><i class="fa fa-user" aria-hidden="true"></i></a></li>
+                            <li class="nav-item"><a href="{% url 'connect' %}" style="color: white;">Connect</a></li>
                             <li class="nav-item"><a href="{% url 'logout' %}" style="color: white;">Logout</a></li>
                         </ul>
                     </div>
@@ -73,5 +68,6 @@
       <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
       <script src="{% static 'js/jquery-3.0.0.min.js' %}"></script>
       <script src="{% static 'js/custom.js' %}"></script>
+      <script src="{% static 'js/jquery.bootstrap.modal.forms.js' %}"></script>
    </body>
 </html>

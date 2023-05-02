@@ -1,9 +1,9 @@
 from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
-from .models import Profile, Skill, Interest
+from .models import Profile, Skill, Interest, Interview
 from django.core.exceptions import ValidationError
-
+import datetime
 
 class UserRegisterForm(UserCreationForm):
     email = forms.EmailField()
@@ -21,7 +21,7 @@ class UserUpdateForm(forms.ModelForm):
 class ProfileUpdateForm(forms.ModelForm):
     class Meta:
         model = Profile
-        fields = ['school_name', 'gpa', 'student_status', 'bio']
+        fields = ['calendly_link', 'zoom_meeting_link', 'bio', 'school_name', 'student_status', 'gpa']
 
 class SkillUpdateForm(forms.ModelForm):
     class Meta:
@@ -67,3 +67,32 @@ class InterestUpdateForm(forms.ModelForm):
         if commit:
             instance.save()
         return instance
+
+class ReviewForm(forms.ModelForm):
+    class Meta:
+        model = Interview
+        fields = ['rating', 'review']
+
+class DateInput(forms.DateInput):
+    input_type = 'date'
+
+class ScheduleForm(forms.ModelForm):
+    class Meta:
+        model = Interview
+        fields = ['interview_date', 'requesting_user', 'interviewer']
+        widgets = {
+            'interview_date': DateInput(),
+        }
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields["requesting_user"].disabled = True
+        self.fields["interviewer"].disabled = True
+    
+    def clean_interview_date(self):
+        date = self.cleaned_data['interview_date']
+        if date < datetime.date.today():
+            raise forms.ValidationError(message='That is not a valid date')
+        return date
+
+
