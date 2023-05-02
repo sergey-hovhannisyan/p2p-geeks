@@ -68,6 +68,7 @@
                             <!-- <li class="d_none"> <a href="Javascript:void(0)"><i class="fa fa-search" style="cursor: pointer;" aria-hidden="true"></i></a> </li> -->
                         {% if request.user.is_authenticated %}
                             <li class="d_none"><a href="{% url 'profile' %}"><i class="fa fa-user" aria-hidden="true"></i></a></li>
+                            <li class="nav-item"><a href="{% url 'interviews' %}" ></a></li>
                             <li class="nav-item"><a href="{% url 'connect' %}" style="color: white;">Connect</a></li>
                             <li class="nav-item"><a href="{% url 'logout' %}" style="color: white;">Logout</a></li>
                         {% endif %}
@@ -139,7 +140,7 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-3 col-sm-6">
-                    <a href = "{% url ''}">
+                    <a href="{% url 'interviews' %}">
                     <div id="wa_hover" class="wallet_box text_align_center" style="height: 200px">
                         <!-- <i><img src="images/wa1.svg" alt="#"/></i> -->
                         <h3>Mock Interviews</h3>
@@ -157,11 +158,13 @@
                     </a>
                 </div>
                 <div class="col-lg-3 col-sm-6">
+                    <a href="https://leetcode.com">
                     <div id="wa_hover" class="wallet_box text_align_center" style="height: 200px">
                         <!-- <i><img src="images/wa3.svg" alt="#"/></i> -->
                         <h3>Practice</h3>
                         <p>Practice technical questions alone prior to facing an interview from a myriad of problems</p>
                     </div>
+                </a>
                 </div>
                 
                 <div class="col-lg-3 col-sm-6" >
