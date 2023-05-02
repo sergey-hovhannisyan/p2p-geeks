@@ -1,10 +1,12 @@
 from django.shortcuts import render, redirect
-from .forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm, SkillUpdateForm, InterestUpdateForm
+from .forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm, SkillUpdateForm, InterestUpdateForm, ReviewForm, ScheduleForm
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from .models import Skill, Profile, Interest
+from .models import Skill, Profile, Interest, Interview
+from django.contrib.auth.models import User
 from django.contrib.auth.views import LoginView
 from .matching import match_users
+import datetime
 
 def login(request):
     if request.user.is_authenticated:
@@ -86,7 +88,88 @@ def connect(request):
     context = {
         "results" : results,
     }
+
+    if request.method == "POST":
+        username = request.POST.get('username')
+        request.session['username'] = username
+        return redirect('schedule')
+
     return render(request, 'connect.html', context)
+
+@login_required
+def review(request):
+    print()
+    id = request.session.get('id')
+    print("INTERVIEW ID ", id)
+    interview = Interview.objects.get(id=id)
+
+    form = ReviewForm(request.POST or None, instance=interview)
+    if request.method == "POST":
+        if form.is_valid():
+            form.save()
+            messages.success(request, f'Your review was sent!')
+            return redirect('interviews')
+        else:
+            messages.warning(request, f'Rating is on a scale from 0-5.')
+            return redirect("review")
+        
+    return render(request, "review.html", {"form": form})
+
+@login_required
+def interviews(request):
+    today = datetime.date.today()
+    next_year = today.replace(year=today.year + 1)
+    old = today.replace(year=today.year - 2)
+
+    upcoming = Interview.objects.filter(requesting_user=request.user, interview_date__range=[str(today), str(next_year)])
+    upcoming2 = Interview.objects.filter(interviewer=request.user, interview_date__range=[str(today), str(next_year)])
+    upcoming_list = list(upcoming)
+    upcoming_list += list(upcoming2)
+
+    past_interviews = Interview.objects.filter(requesting_user=request.user, interview_date__range=[str(old), str(today)])
+    past_meetings = list(past_interviews)
+
+    meeting_to_review = Interview.objects.filter(interviewer=request.user, interview_date__range=[str(old), str(today)])
+    to_review = list(meeting_to_review)
+
+    context = {
+        "upcoming_list": upcoming_list,
+        "past_meetings": past_meetings,
+        "to_review": to_review,
+    }
+
+    if request.method == "POST":
+        id = request.POST.get('id')
+        request.session['id'] = id
+        return redirect('review')
+
+    return render(request, "interviews.html", context)
+
+@login_required
+def schedule(request):
+    print()
+    username = request.session.get('username')
+    interviewer = User.objects.get(username=username)
+
+    initial = {
+        "requesting_user": request.user,
+        "interviewer": interviewer,
+    }
+
+    form = ScheduleForm(request.POST or None, initial=initial)
+    if request.method == "POST":
+        if form.is_valid():
+            form.save()
+            return redirect('interviews')
+        else:
+            messages.warning(request, f'That is not a valid date')
+            return redirect('schedule')
+
+    context = {
+        "form": form,
+    }
+        
+    return render(request, "schedule.html", context=context)
 
 def handler404(request, exception):
     return render(request, '404.html', status=404)
