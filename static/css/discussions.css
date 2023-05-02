@@ -13,9 +13,14 @@ html{
 }
 
 a{
-    color:#FF0042;
+    color:white;
     font-weight: bolder;
     text-decoration: none;
+}
+
+a:hover{
+    text-decoration: underline;
+    transition: ease-in all 0.1s;
 }
 
 h1{
@@ -49,7 +54,7 @@ body {
 }
 
 .subforum-title{
-    background-color:#292B2E;
+    background-color:#9c9a9a;
     padding: 5px;
     border-radius: 5px;
     margin:4px;
@@ -272,7 +277,7 @@ header{
 
 /* forum info Styling */
 .forum-info{
-    padding: 20px;
+    padding: 1%;
     background-color: #111314;
 }
 
@@ -285,7 +290,7 @@ header{
 footer{
     margin-top: 20px;
     padding: 20px;
-    background-color:  #52057b;
+    background-color:  #ffffff;
     display: block;
     text-align: center;
 }
@@ -364,7 +369,7 @@ footer{
 }
 
 .navigate a:hover{
-    color:#FF0042;
+    color:white;
     font-weight: bolder;
 }
 
@@ -466,7 +471,122 @@ footer{
     border: solid 1px #000000;
 }
 
-
+.btn {
+    --border-width: .125em;
+    --curve-size: .5em;
+    --bg: #adaab3;
+    --color: #afffff;
+      /* use position: relative; so that BG is only for .btn */
+    position: relative;
+    isolation: isolate;
+    display: inline-grid;
+    place-content: center;
+    padding: .5em 1.5em;
+    font-size: 17px;
+    border: 0;
+    text-transform: uppercase;
+    box-shadow: 10px 10px 20px rgba(0, 0, 0, .6);
+    clip-path: polygon(
+              /* Top-left */
+              0% var(--curve-size),
+  
+              var(--curve-size) 0,
+              /* top-right */
+              100% 0,
+              100% calc(100% - var(--curve-size)),
+  
+              /* bottom-right 1 */
+              calc(100% - var(--curve-size)) 100%,
+              /* bottom-right 2 */
+              0 100%);
+    transition: color 250ms;
+  }
+  
+  .btn::after,
+  .btn::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+  }
+  
+  .btn::before {
+    background: var(--border-color);
+    background-size: 300% 300%;
+    animation: move-bg7234 5s ease infinite;
+    z-index: -2;
+  }
+  
+  @keyframes move-bg7234 {
+    0% {
+      background-position: 31% 0%
+    }
+  
+    50% {
+      background-position: 70% 100%
+    }
+  
+    100% {
+      background-position: 31% 0%
+    }
+  }
+  
+  .btn::after {
+    background: var(--bg);
+    z-index: -1;
+    clip-path: polygon(
+              /* Top-left */
+              var(--border-width) 
+              calc(var(--curve-size) + var(--border-width) * .5),
+  
+              calc(var(--curve-size) + var(--border-width) * .5) var(--border-width),
+  
+              /* top-right */
+              calc(100% - var(--border-width)) 
+              var(--border-width),
+  
+              calc(100% - var(--border-width)) 
+              calc(100% - calc(var(--curve-size) + var(--border-width) * .5)),
+  
+              /* bottom-right 1 */
+              calc(100% - calc(var(--curve-size) + var(--border-width) * .5)) calc(100% - var(--border-width)),
+              /* bottom-right 2 */
+              var(--border-width) calc(100% - var(--border-width)));
+    transition: clip-path 500ms;
+  }
+  
+  .btn:where(:hover, :focus)::after {
+    clip-path: polygon(
+                  /* Top-left */
+                  calc(100% - var(--border-width)) 
+  
+                  calc(100% - calc(var(--curve-size) + var(--border-width) * 0.5)),
+      
+                  calc(100% - var(--border-width))
+  
+                  var(--border-width),
+      
+                  /* top-right */
+                  calc(100% - var(--border-width))
+  
+                   var(--border-width),
+      
+                  calc(100% - var(--border-width)) 
+  
+                  calc(100% - calc(var(--curve-size) + var(--border-width) * .5)),
+      
+                  /* bottom-right 1 */
+                  calc(100% - calc(var(--curve-size) + var(--border-width) * .5)) 
+                  calc(100% - var(--border-width)),
+  
+                  /* bottom-right 2 */
+                  calc(100% - calc(var(--curve-size) + var(--border-width) * 0.5))
+                  calc(100% - var(--border-width)));
+    transition: 200ms;
+  }
+  
+  .btn:where(:hover, :focus) {
+    color: #636363;
+  }
 
 
 

@@ -30,7 +30,7 @@
             <!-- <a class="bar-icon" id="iconBar" onclick="hideIconBar()"><i class="fa fa-bars"></i></a> -->
             <div class="brand">P2P Geeks</div>
             {% if user.is_authenticated %}
-            <div><a href="{% url 'create_post' %}"><button>Create Post</button></a></div>
+            <div style = "padding-left:5%"><a href="{% url 'create_post' %}"><button class = "btn">Create Post</button></a></div>
             {% endif %}
         </div>
 
@@ -42,10 +42,8 @@
     {% endif %}
     {% block content %}
     {% endblock content %}
-    <div style="margin-bottom: 150px;"></div>
-    <footer>
-        <span>&copy;  Copyright © 2023 P2P Geeks All Rights Reserved</span>
-    </footer>
+    <!-- <div style="margin-bottom: 150px;"></div> -->
+    <p class="copyright">Copyright © 2023 P2P Geeks All Rights Reserved</p>
     <script src="{% static 'js/discussions.js' %}"></script>
 </body>
 </html>

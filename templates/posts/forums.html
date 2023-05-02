@@ -5,9 +5,6 @@
     <div class="container">
         <div class="subforum">
             {% if forums %}
-                <div class="subforum-title">
-                    <h1>General Information</h1>
-                </div>
 
                 {% for forum in forums %}
                     <div class="subforum-row">
@@ -47,7 +44,7 @@
     <!-- Forum Info -->
     <div class="forum-info">
         <div class="chart">
-            MyForum - Stats &nbsp;<i class="fa fa-bar-chart"></i>
+            My Forum - Stats &nbsp;<i class="fa fa-bar-chart"></i>
         </div>
         <span><u>{{num_posts}}</u> Posts in <u>{{num_categories}}</u> Categories by <u>{{num_users}}</u> Members.</span><br>
         {% if forums %}
