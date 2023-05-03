@@ -90,8 +90,8 @@ WSGI_APPLICATION = "p2p-geeks.wsgi.application"
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'myproject',
-        'USER': 'myprojectuser',
+        'NAME': 'p2pdb',
+        'USER': 'testuser',
         'PASSWORD': 'password',
         'HOST': 'localhost',
         'PORT': '',

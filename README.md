@@ -13,7 +13,7 @@ Final Project for Senior Design CS-4523
 ### Installation Prerequisites
 
 Prerequisites for installation:
-- Latest version of PostgreSQL (initialize a server and create a database)
+- Latest version of PostgreSQL (initialize a server and create a database named `p2pdb`)
 - Python 3.8 or higher
 - `pip install Django psycopg2`
 - `pip install virtualenv`
@@ -38,11 +38,10 @@ Open a new tab on your terminal and log into the database you created for Postgr
 `ALTER ROLE testuser SET timezone TO 'UTC';` <br />
 `GRANT ALL PRIVILEGES ON DATABASE myproject TO myprojectuser;` <br />
 
-Go back to the terminal tab which should point to your project directory and have the virtual environment setup and active. Then type the following commands where 
-`mydatabase` is the name of your database: <br />
-`psql mydatabase -c "GRANT ALL ON ALL TABLES IN SCHEMA public to testuser;"` <br />
-`psql mydatabase -c "GRANT ALL ON ALL SEQUENCES IN SCHEMA public to testuser;"` <br />
-`psql mydatabase -c "GRANT ALL ON ALL FUNCTIONS IN SCHEMA public to testuser;"` <br />
+Go back to the terminal tab which should point to your project directory and have the virtual environment setup and active. Then type the following commands: <br />
+`psql p2pdb -c "GRANT ALL ON ALL TABLES IN SCHEMA public to testuser;"` <br />
+`psql p2pdb -c "GRANT ALL ON ALL SEQUENCES IN SCHEMA public to testuser;"` <br />
+`psql p2pdb -c "GRANT ALL ON ALL FUNCTIONS IN SCHEMA public to testuser;"` <br />
 
 
 Then run <br />
