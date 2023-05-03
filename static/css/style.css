@@ -27,10 +27,11 @@ body {
      font-family: 'Poppins', sans-serif;
      line-height: 1.80857;
      font-weight: normal;
-     background: url(../images/body_bg.jpg);
-     background-size: 100% 100%;
-     background-position: center;
-     background-repeat: no-repeat;
+     background: url(../images/body_bg.jpg) no-repeat center center fixed;
+     -webkit-background-size: cover;
+     -moz-background-size: cover;
+     -o-background-size: cover;
+     background-size: cover;
 }
 
 a {
@@ -306,7 +307,7 @@ ul.email {
      display: flex;
      align-items: center;
      justify-content: flex-end;
-     flex-wrap: wrap;
+     flex-wrap: nowrap;
 }
 
 ul.email li {
@@ -447,14 +448,14 @@ ul.email li i {
 /** wallet **/
 
 .wallet {
-     padding: 113px 30px 0 30px;
+     padding: 0px 30px 0px 30px;
 }
 
 .wallet_box {
      background: #fff;
      margin-bottom: 30px;
      transition: ease-in all 0.5s;
-     padding: 25px 15px 50px 15px;
+     padding: 5% 3% 10% 3%;
 }
 
 .wallet_box h3 {
@@ -464,7 +465,7 @@ ul.email li i {
      transition: ease-in all 0.5s;
      font-weight: bold;
      line-height: 22px;
-     padding: 20px 0 20px 0;
+     padding: 7% 0 7% 0;
 }
 
 .wallet_box p {

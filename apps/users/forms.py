@@ -23,6 +23,17 @@ class ProfileUpdateForm(forms.ModelForm):
         model = Profile
         fields = ['calendly_link', 'zoom_meeting_link', 'bio', 'school_name', 'student_status', 'gpa']
 
+    def __init__(self, *args, **kwargs):
+        super(ProfileUpdateForm, self).__init__(*args, **kwargs)
+
+    def clean_calendly_link(self):
+        link = self.cleaned_data['calendly_link']
+        check = "https://calendly.com/"
+        if link[:len(check)] != check:
+            raise forms.ValidationError(message='That is not a valid calendly!')
+        return link
+
+
 class SkillUpdateForm(forms.ModelForm):
     class Meta:
         model = Skill
